@@ -75,7 +75,7 @@ pub fn parse_date(humandate: impl AsRef<str>) -> Result<chrono::NaiveDate, Error
     if parts.len() != 4 {
         return Err(Error::ParseError);
     }
-    let day: u32 = parse_day(parts[0])?;
+    let day: u32 = parts[0].rmatches(char::is_numeric).collect()?;
 
     // TODO: parts[1] == of
 
